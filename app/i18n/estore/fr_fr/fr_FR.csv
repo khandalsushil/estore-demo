@@ -15312,3 +15312,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Please enter a date from the past.","Veuillez entrer une date dans le passé.",lib,web
 "custom.definition","custom.definition",lib,web
 "component.behaviours","component.behaviours",lib,web
+"Static Block Title","Titre du bloc statique",lib,web
