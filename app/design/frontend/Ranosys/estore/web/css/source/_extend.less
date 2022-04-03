@@ -106,6 +106,55 @@
         }
     }
 }
+.block-title{
+    font-weight:600;
+    margin-bottom: 40px;
+}
+
+
+//
+//  Button
+//  ---------------------------------------------
+.action.primary, 
+.action-primary{
+    background:@theme-primary;
+    border-color:@theme-primary;
+    &:hover,
+    &:focus{
+        background:darken(@theme-primary, 5%);
+        border-color:darken(@theme-primary, 5%);
+    }
+}
+
+//
+//  Footer
+//  ---------------------------------------------
+
+.page-footer{
+    background-color: @theme-bg;
+}
+
+
+//
+//  Banner SLider
+//  ---------------------------------------------
+.slick-dots{
+    li.slick-active{
+        button{
+            background: @theme-primary;
+        }
+    } 
+} 
+.home-slider{
+    .pagebuilder-slide-wrapper{
+        display: flex;
+        align-items: center;
+        .pagebuilder-overlay{
+            padding:30px 30px 30px 80px;
+        }
+    }
+    
+}
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
     .panel{
@@ -281,6 +330,16 @@
             .switcher-currency{
                 display:none;
             }
+            .logo {
+                margin: 0 auto 0 30px;
+                img{
+                    height:40px;
+                    width:auto;
+                }
+            }
+            .minicart-wrapper{
+                margin-top:0;
+            }
         }
     }
     .panel.wrapper{
@@ -293,52 +352,30 @@
         .slick-next{
             display:none !important;
         }
+        .pagebuilder-slide-wrapper{
+            .pagebuilder-overlay{
+                padding:30px !important;
+                background-color: rgba(255, 255, 255, .5) !important;
+            }
+        } 
     }
+    .top-container{
+        .block-search{
+            margin-top: 0;
+            .label:before{
+                margin-right:0;
+            }
+            .block-content{
+                margin-bottom:10px;
+            }
+        } 
+        
+    }
+    
+    .product-slider{
+        padding:0 20px;
+    }
+    
     
 }
 
-
-
-//
-//  Button
-//  ---------------------------------------------
-.action.primary, 
-.action-primary{
-    background:@theme-primary;
-    border-color:@theme-primary;
-    &:hover,
-    &:focus{
-        background:darken(@theme-primary, 5%);
-        border-color:darken(@theme-primary, 5%);
-    }
-}
-
-//
-//  Footer
-//  ---------------------------------------------
-
-.page-footer{
-    background-color: @theme-bg;
-}
-
-
-//
-//  Banner SLider
-//  ---------------------------------------------
-.slick-dots{
-    li.slick-active{
-        button{
-            background: @theme-primary;
-        }
-    } 
-} 
-.home-slider{
-    .pagebuilder-slide-wrapper{
-        display: flex;
-        align-items: center;
-        .pagebuilder-overlay{
-            padding:30px 30px 30px 80px;
-        }
-    }
-    
-}
