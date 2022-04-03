@@ -1,0 +1,20 @@
+<ul class="header-account-nav">
+    <?php if(!$block->isLoggedIn()) : ?>        
+        <li class="account-nav-item">
+            <a href="<?= $block->getUrl('customer/account/register');?>"><?= __('Register'); ?></a>
+        </li>
+        <li class="account-nav-item">
+            <a href="<?= $block->getHref();?>"><?= __('Login'); ?></a>
+        </li>
+    <?php else : ?>
+    <li class="account-nav-item">
+        <a href="<?= $block->getUrl('customer/account');?>"><?= __('My Account'); ?></a>
+    </li>
+    <li class="account-nav-item">
+        <a href="<?= $block->getHref();?>"><?= __('Logout'); ?></a>
+    </li>
+    <li class="account-nav-item">
+        <a href="<?= $block->getUrl('customer/account/wishlist');?>"><?= __('Wishlist'); ?></a>
+    </li>
+    <?php endif; ?>
+</ul>

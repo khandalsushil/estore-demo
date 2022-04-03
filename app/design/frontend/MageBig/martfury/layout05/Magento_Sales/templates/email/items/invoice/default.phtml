@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php $_item = $block->getItem(); 
+//print_r($_item->getOrderItem());die;
+?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<?php $storeCode = $_order->getStore()->getCode();?>
+<?php $productInstance = \Magento\Framework\App\ObjectManager::getInstance();
+$customAttr = "N/A";
+$tollcode= "N/A";
+$product = $productInstance->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+if($product->getCustomAttribute('country_of_manufacture')){
+    $customAttr = $product->getCustomAttribute('country_of_manufacture')->getValue();
+}
+if($product->getCustomAttribute('tollkode')){
+    $tollcode = $product->getCustomAttribute('tollkode')->getValue();
+}
+?>
+<tr>
+    <td class="item-info<?= ($block->getItemOptions() ? ' has-extra' : '') ?>">
+        <p class="product-name"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <?php if ($block->getItemOptions()) : ?>
+            <dl>
+                <?php foreach ($block->getItemOptions() as $option) : ?>
+                    <dt><strong><em><?= $block->escapeHtml($option['label']) ?></em></strong></dt>
+                    <dd>
+                        <?= /* @noEscape */  nl2br($block->escapeHtml($option['value'])) ?>
+                    </dd>
+                <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) : ?>
+            <?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <td class="item-sku">
+    <?= $block->escapeHtml($block->getSku($_item)) ?>
+    </td>
+    <td class="item-price">
+        <?= $block->getUnitPrice($_item->getOrderItem()) ?>
+    </td>
+        <td class="item-qty"><?= (float) $_item->getQty() ?></td>
+        <?php if($storeCode == 'default'):?>
+            <td class="item-tax"><?php 
+            $tax= $block->escapeHtml($_item->getTaxAmount());
+            echo number_format((float)$tax, 2, '.', '');
+             ?></td>
+        <?php endif;?>
+    <td class="item-country"><?= $customAttr ?></td>
+    <td class="item-tollcode"><?= $tollcode ?></td>
+    <td class="item-subtotal"><?= /* @noEscape */ $block->getItemPrice($_item->getOrderItem()) ?></td>
+</tr>

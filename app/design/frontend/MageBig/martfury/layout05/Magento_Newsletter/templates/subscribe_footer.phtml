@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © magebig.com - All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="main-newsletter">
+    <div class="main-newsletter-inner">
+        <div class="subscribe">
+            <form
+                novalidate
+                action="<?= /* @escapeNotVerified */ $block->getFormActionUrl() ?>"
+                method="post"
+                data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                id="newsletter-validate-detail"
+                onsubmit=" return validate_form()"
+                >
+                <div class="block-content">
+                    <div class="input-box">
+                        <input name="email" type="email" id="newsletter"
+                                    placeholder="<?= __('Enter your email here...') ?>"
+                                    data-validate="{required:true, 'validate-email':true}"/>
+                                    <div class="terms-condition-checkbox">
+                                        <input type="checkbox" name="checkbox" data-validate="{required:true}" value="check" id="agree">
+                                        <?= __('I agree to Boat Parts') ?> <a href="<?= $block->getUrl('term-and-conditions')?>"><?= $block->escapeHtml(__('Terms & Conditions')) ?></a>
+                                    </div>
+                                    <div class="red hide" id="div2"><?= __('Please check above to agree terms and conditions') ?></div>           
+                        <button class="submit" id="submit-newsletter" title="<?= /* @escapeNotVerified */ __('Subscribe') ?>" type="submit" return false}">
+                            <span><?= /* @escapeNotVerified */ __('Submit') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+function validate_form(){
+    if(!jQuery('#agree').is(":checked")){
+        jQuery('.red').removeClass('hide');  
+        return false;
+    } else {
+        jQuery('.red').addClass('hide');  
+        return true;
+    }
+} 
+</script>
